@@ -1,0 +1,165 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .title {
+            font-size: 24px;
+            font-style: italic;
+            color: darkgrey;
+        }
+        
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border: 5px double red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Getting started</h1>
+    <h2>My profile</h2>
+    <p>Your profile is the core and most important part of Connect. So you should decorate it to the fullest (or as much as you can)!</p>
+    <p>To do this, we've added a BBCode and two classes to the site. Let's start with two simple classes ^w^.</p>
+
+
+    <h1>Classes</h1>
+    <p>Classes in CSS are used to apply styling to multiple HTML elements that share the same class attribute. Classes allow you to group elements together and style them uniformly. </p>
+    <p>Example usage of classes "title" and "avatar":</p>
+    <code>
+        .title {<br>
+            font-size: 24px;<br>
+            font-weight: bold;<br>
+            color: darkgrey;<br>
+        }<br>
+        <br>
+        .avatar {<br>
+            width: 100px;<br>
+            height: 100px;<br>
+            border: 5px double red;<br>
+        }
+    </code>
+    <hr>
+        <h1 class="title"><img src="http://c.qwa.su/Butterfly.bmp" alt="Avatar" class="avatar" align="left">Butterfly's page</h1>
+        <p>
+            Ay, ay, ay<br>
+            I'm your little butterfly<br>
+            Green, black and blue<br>
+            Make the colours in the sky<br>
+        </p>
+    <hr>
+
+
+<h1>BBCode Examples</h1>
+
+<h2>Bold Text:</h2>
+<code>[b]This is bold text[/b]</code>
+<p><strong>This is bold text</strong></p>
+
+<h2>Italic Text:</h2>
+<code>[i]This is italic text[/i]</code>
+<p><em>This is italic text</em></p>
+<h2>Pre-formatted Text:</h2>
+<code>[code]This is pre-formatted text[/code]</code>
+<pre>This is pre-formatted text</pre>
+
+<h2>Quote:</h2>
+<code>[quote]This is a quote[/quote]</code>
+<blockquote>This is a quote</blockquote>
+
+<h2>Quote with Author:</h2>
+<code>[quote="Obama"]This is a quote by a specific person[/quote]</code>
+<blockquote>Obama said: This is a quote by a specific person</blockquote>
+
+<h2>Text Size:</h2>
+<code>[size=30]This text's size is set at 30%[/size]</code>
+<p style="font-size: 30px;">This text's size is set at 30%</p>
+
+<h2>Strikethrough Text:</h2>
+<code>[s]This text has a strikethrough[/s]</code>
+<p><s>This text has a strikethrough</s></p>
+
+<h2>Underlined Text:</h2>
+<code>[u]This text is underlined.[/u]</code>
+<p><u>This text is underlined.</u></p>
+
+<h2>Centered Text:</h2>
+<code>[center]This text is centered[/center]</code>
+<p style="text-align: center;">This text is centered</p>
+
+<h2>Colored Text:</h2>
+<code>[color=red]This is red text[/color]</code>
+<p style="color: red;">This is red text</p>
+
+<h2>Email Link:</h2>
+<code>[email]someone@somewhere.com[/email]</code>
+<p><a href="mailto:someone@somewhere.com">someone@somewhere.com</a></p>
+
+<h2>Email Link with Text:</h2>
+<code>[email=someone@somewhere.com]An e-mail link[/email]</code>
+<p><a href="mailto:someone@somewhere.com">An e-mail link</a></p>
+
+<h2>URL Link:</h2>
+<code>[url]http://www.google.com/[/url]</code>
+<p><a href="http://www.google.com/">http://www.google.com/</a></p>
+
+<h2>URL Link with Text:</h2>
+<code>[url=http://www.google.com/]Google.com yo![/url]</code>
+<p><a href="http://www.google.com/">Google.com yo!</a></p>
+
+<h2>Image:</h2>
+<code>[img]http://c.qwa.su/Butterfly.bmp[/img]</code>
+<p><img src="http://c.qwa.su/Butterfly.bmp" alt="Image"></p>
+
+<h2>Image as Link:</h2>
+<code>[url=http://forum.qwa.su][img]http://c.qwa.su/Butterfly.bmp[/img][/url]</code>
+<p><a href="http://forum.qwa.su"><img src="http://c.qwa.su/Butterfly.bmp" alt="Image"></a></p>
+
+<h2>Unordered List:</h2>
+<code>[list]
+[*]list item #1
+[*]list item #2
+[*][b]bold list item #3[/b]
+[/list]</code>
+<ul>
+  <li>list item #1</li>
+  <li>list item #2</li>
+  <li><strong>bold list item #3</strong></li>
+</ul>
+
+<h2>Ordered List:</h2>
+<code>[list=1]
+[*]list item #1
+[*]list item #2
+[*][b]bold list item #3[/b]
+[/list]</code>
+<ol>
+  <li>list item #1</li>
+  <li>list item #2</li>
+  <li><strong>bold list item #3</strong></li>
+</ol>
+
+<h2>Ordered List (Alpha):</h2>
+<code>[list=a]
+[*]list item #1
+[*]list item #2
+[*][b]bold list item #3[/b]
+[/list]</code>
+<ol type="a">
+  <li>list item #1</li>
+  <li>list item #2</li>
+  <li><strong>bold list item #3</strong></li>
+</ol>
+
+<h2>YouTube Video:</h2>
+<code>[youtube]http://youtu.be/DabwEqsWWiA&hd=1[/youtube]</code>
+<p>(YouTube video: http://youtu.be/DabwEqsWWiA&hd=1)</p>
+
+<code>[youtube]http://www.youtube.com/watch?v=DabwEqsWWiA[/youtube]</code>
+<p>(YouTube video: http://www.youtube.com/watch?v=DabwEqsWWiA)</p>
+
+<h2>New Line:</h2>
+<code>First line [n]Second line</code>
+<p>First line <br>Second line</p>
+
+</body>
+</html>
