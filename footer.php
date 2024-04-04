@@ -4,4 +4,4 @@
     }
 </style>
 
-<p class="footer_vlomx27D39gakrvwi92">[Connect] - Betabuild 040424-1 (Afterschool Nightly)</p>
+<p class="footer_vlomx27D39gakrvwi92">[Connect] - Betabuild 040424-2 (Afterschool Midnight)</p>

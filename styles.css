@@ -3,3 +3,7 @@
     width: 100%;
     box-sizing: border-box;
 }
+
+a, a:visited {
+	color: #0000ff;
+}
