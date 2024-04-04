@@ -90,7 +90,7 @@ $mysqli->close();
     <?php include "bar.php"; ?>
     <div class="wrapper">
         <h2>Wall</h2>
-        <form action="post.php" method="post">
+        <form action="system/post.php" method="post">
             <div class="form-group">
                 <textarea name="content" class="form-control" rows="4" placeholder="Write something..."></textarea>
             </div>
@@ -108,7 +108,7 @@ $mysqli->close();
                         <span class="entry-time"><?php echo date('M j, Y H:i', strtotime($entry['created_at'])); ?></span>
                         <?php if ($_SESSION['username'] == $entry['author']): ?>
                             <!-- Only display delete button if current user is the author of the post -->
-                            <a href="removepost.php?id=<?php echo $entry['id']; ?>">Delete</a>
+                            <a href="system/removepost.php?id=<?php echo $entry['id']; ?>">Delete</a>
                         <?php endif; ?>
                         <br>
                         <?php echo htmlspecialchars($entry['post']); ?>
