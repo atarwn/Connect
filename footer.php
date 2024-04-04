@@ -4,4 +4,4 @@
     }
 </style>
 
-<p class="footer_vlomx27D39gakrvwi92">[Connect] - Stable 040424 (Rv1.0)</p>
+<p class="footer_vlomx27D39gakrvwi92">[Connect] - Stable 040424 (Afterschool Evening)</p>
