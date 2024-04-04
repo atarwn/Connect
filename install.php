@@ -56,6 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             author_url VARCHAR(255),
             avatar_url VARCHAR(255),
             post TEXT NOT NULL,
+            edited INT,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
     ";

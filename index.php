@@ -90,7 +90,7 @@ $mysqli->close();
     <?php include "bar.php"; ?>
     <div class="wrapper">
         <h2>Wall</h2>
-        <form action="system/post.php" method="post">
+        <form action="post.php" method="post">
             <div class="form-group">
                 <textarea name="content" class="form-control" rows="4" placeholder="Write something..."></textarea>
             </div>
@@ -107,11 +107,15 @@ $mysqli->close();
                         <strong><a href="<?php echo htmlentities($entry['author_url']);?>"><?php echo htmlspecialchars($entry['author']); ?></a></strong>
                         <span class="entry-time"><?php echo date('M j, Y H:i', strtotime($entry['created_at'])); ?></span>
                         <?php if ($_SESSION['username'] == $entry['author']): ?>
-                            <!-- Only display delete button if current user is the author of the post -->
-                            <a href="system/removepost.php?id=<?php echo $entry['id']; ?>">Delete</a>
+                            <!-- Only display edit and delete links if current user is the author of the post -->
+                            <a href="editpost.php?id=<?php echo $entry['id']; ?>">Edit</a> |
+                            <a href="removepost.php?id=<?php echo $entry['id']; ?>">Delete</a>
                         <?php endif; ?>
                         <br>
                         <?php echo htmlspecialchars($entry['post']); ?>
+                        <?php if ($entry['edited']): ?>
+                            <span style="color: gray; font-size: small;">(edited)</span>
+                        <?php endif; ?>
                     </li>
                 <?php endforeach; ?>
             </ul>

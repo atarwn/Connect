@@ -17,18 +17,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $new_personal_info = htmlspecialchars($_POST['personal_info']);
     $new_avatar = trim($_POST['avatar']);
     $new_custom_style = trim($_POST['custom_style']);
+    $new_email = trim($_POST['email']);
 
     // Prepare update statement
-    $sql = "UPDATE users SET personal_info = ?, avatar = ?, custom_style = ? WHERE id = ?";
+    $sql = "UPDATE users SET personal_info = ?, avatar = ?, custom_style = ?, email = ? WHERE id = ?";
 
     if ($stmt = $mysqli->prepare($sql)) {
         // Bind parameters to the prepared statement
-        $stmt->bind_param("sssi", $param_personal_info, $param_avatar, $param_custom_style, $param_id);
+        $stmt->bind_param("ssssi", $param_personal_info, $param_avatar, $param_custom_style, $param_id);
 
         // Set parameters
         $param_personal_info = $new_personal_info;
         $param_avatar = $new_avatar;
         $param_custom_style = $new_custom_style;
+        $param_email = $new_email;
         $param_id = $_SESSION['id'];
 
         // Attempt to execute the prepared statement

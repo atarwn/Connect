@@ -62,6 +62,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $password = trim($_POST['password']);
     }
 
+    // Validate email
+    if (empty(trim($_POST['email']))) {
+        $email_err = 'Please enter a email.';
+    } else {
+        // Prepare a select statement
+        $sql = 'SELECT id FROM users WHERE email = ?';
+
+        if ($stmt = $mysqli->prepare($sql)) {
+            // Bind variables to the prepared statement as parameters
+            $stmt->bind_param('s', $param_email);
+
+            // Set parameters
+            $param_email = trim($_POST['email']);
+
+            // Attempt to execute the prepared statement
+            if ($stmt->execute()) {
+                // Store result
+                $stmt->store_result();
+
+                if ($stmt->num_rows == 1) {
+                    $email_err = 'This email is already taken.';
+                } else {
+                    $email = trim($_POST['email']);
+                }
+            } else {
+                echo 'Oops! Something went wrong. Please try again later.';
+            }
+
+            // Close statement
+            $stmt->close();
+        }
+    }
+
     // Validate confirm password
     if (empty(trim($_POST['confirm_password']))) {
         $confirm_password_err = 'Please confirm password.';
@@ -76,17 +109,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($username_err) && empty($password_err) && empty($confirm_password_err)) {
 
         // Prepare an insert statement
-        $sql = 'INSERT INTO users (username, password, avatar, personal_info) VALUES (?, ?, ?, ?)';
+        $sql = 'INSERT INTO users (username, password, avatar, personal_info, email) VALUES (?, ?, ?, ?, ?)';
 
         if ($stmt = $mysqli->prepare($sql)) {
             // Bind variables to the prepared statement as parameters
-            $stmt->bind_param('ssss', $param_username, $param_password, $param_avatar, $param_personal_info);
+            $stmt->bind_param('sssss', $param_username, $param_password, $param_avatar, $param_personal_info, $param_email);
 
             // Set parameters
             $param_username = $username;
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
             $param_avatar = 'http://forum.qwa.su/avatars/Oxygen/invisible-user.png';
             $param_personal_info = 'Hello world!';
+            $param_email = $email;
 
             // Attempt to execute the prepared statement
             if ($stmt->execute()) {
@@ -126,6 +160,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <label>Username</label>
                 <input type="text" name="username" value="<?php echo $username; ?>">
                 <span class="help-block"><?php echo $username_err; ?></span>
+            </div>
+            <div class="form-group <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
+                <label>Email</label>
+                <input type="email" name="email" value="<?php echo $email; ?>">
+                <span class="help-block"><?php echo $email_err; ?></span>
             </div>
             <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                 <label>Password</label>
