@@ -87,7 +87,7 @@ $mysqli->close();
 </head>
 
 <body>
-    <?php include "bar.php"; ?>
+<?php include "bar.php";?>
     <div class="wrapper">
         <h2>Wall</h2>
         <form action="post.php" method="post">
@@ -127,6 +127,7 @@ $mysqli->close();
         <?php endif; ?>
     </div>
     <?php include "footer.php"; ?>
+    <?php include "online.php"; ?>
 </body>
 
 </html>

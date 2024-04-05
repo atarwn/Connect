@@ -82,7 +82,7 @@ $mysqli->close();
 </head>
 
 <body>
-    <?php include "bar.php"; ?>
+    <?php include "bar.php"; ?><?php include "online.php"; ?>
     <div class="wrapper">
         <h2>Edit Post</h2>
         <form action="editpost.php?id=<?php echo $post_id; ?>" method="post">

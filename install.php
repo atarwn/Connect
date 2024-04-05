@@ -9,6 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Write database connection parameters to db_connect.php
     $db_config_content = "<?php\n";
+    $db_config_content .= "date_default_timezone_set('Europe/Moscow');\n";
     $db_config_content .= "// Database credentials\n";
     $db_config_content .= "define('DB_SERVER', '$servername');\n";
     $db_config_content .= "define('DB_USERNAME', '$username');\n";
@@ -44,8 +45,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             email TEXT,
             custom_style TEXT,
             isadmin INT,
-            ismod INT
-        );
+            ismod INT,
+            lastvisittime TIMESTAMP
+        )
     ";
 
     // SQL to create wall table
@@ -58,11 +60,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             post TEXT NOT NULL,
             edited INT,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        );
+        )
     ";
 
+    $sql_timezone = "SET @@global.time_zone = '+03:00';";
+
     // Execute SQL queries
-    if ($mysqli->query($sql_users) === TRUE && $mysqli->query($sql_wall) === TRUE) {
+    if ($mysqli->query($sql_users) === TRUE && $mysqli->query($sql_wall) === TRUE && $mysqli->query($sql_timezone) === TRUE) {
         echo "Tables created successfully. Please make sure you remove 'install.php' after installation.";
     } else {
         echo "Error creating tables: " . $mysqli->error;

@@ -68,7 +68,7 @@ $mysqli->close();
 </head>
 
 <body>
-    <?php include "bar.php"; ?>
+<?php include "bar.php"; include "online.php"; ?>
     <div class="wrapper">
     <h1>Welcome here, <?php echo htmlspecialchars($username); ?>!</h1>
         <p>You can find your public page <a href="user.php?id=<?php echo $_SESSION['id']; ?>">here</a></p>

@@ -109,11 +109,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($username_err) && empty($password_err) && empty($confirm_password_err)) {
 
         // Prepare an insert statement
-        $sql = 'INSERT INTO users (username, password, avatar, personal_info, email) VALUES (?, ?, ?, ?, ?)';
+        $sql = 'INSERT INTO users (username, password, avatar, personal_info, email, custom_style) VALUES (?, ?, ?, ?, ?, ?)';
 
         if ($stmt = $mysqli->prepare($sql)) {
             // Bind variables to the prepared statement as parameters
-            $stmt->bind_param('sssss', $param_username, $param_password, $param_avatar, $param_personal_info, $param_email);
+            $stmt->bind_param('ssssss', $param_username, $param_password, $param_avatar, $param_personal_info, $param_email, $param_custom_style);
 
             // Set parameters
             $param_username = $username;
@@ -121,6 +121,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $param_avatar = 'http://forum.qwa.su/avatars/Oxygen/invisible-user.png';
             $param_personal_info = 'Hello world!';
             $param_email = $email;
+            $param_custom_style = '
+.avatar{margin-right: 5px;}
+.title{font-style: italic; color: #'.bin2hex(random_bytes(3)).';}
+body{width: 100%; background-color: #'.bin2hex(random_bytes(3)).'; color: #'.bin2hex(random_bytes(3)).';}
+            ';
 
             // Attempt to execute the prepared statement
             if ($stmt->execute()) {
