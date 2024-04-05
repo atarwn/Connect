@@ -93,15 +93,7 @@ $mysqli->close();
             </div>
         </form>
             <br>
-        <!--<form action="update_email_info.php" method="post">
-            <div class="form-group">
-                <label>Update email:</label><br>
-                <textarea type="text" name="email" class="form-control" rows="1"><?php echo htmlspecialchars($email); ?></textarea><br>
-                <label>Your password:</label><br>
-                <input type="password" name="password" class="form-control"><br>
-                <input type="submit" class="btn btn-primary" value="Save">
-            </div>
-        </form>-->
+        <a href="user_account.php">Update account</a>
         
     </div>
     <?php include "footer.php"; ?>
