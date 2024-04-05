@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Validate credentials
     if (empty($email_err) && empty($password_err)) {
         // Prepare a select statement
-        $sql = 'SELECT id, username, email, password FROM users WHERE email = ?';
+        $sql = 'SELECT id, username, email, password, ismod, isadmin FROM users WHERE email = ?';
 
         if ($stmt = $mysqli->prepare($sql)) {
             // Bind variables to the prepared statement as parameters
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // Check if email exists, if yes then verify password
                 if ($stmt->num_rows == 1) {
                     // Bind result variables
-                    $stmt->bind_result($id, $username, $email, $hashed_password);
+                    $stmt->bind_result($id, $username, $email, $hashed_password, $ismod, $isadmin);
                     if ($stmt->fetch()) {
                         if (password_verify($password, $hashed_password)) {
                             // Password is correct, start a new session
@@ -57,6 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             $_SESSION['id'] = $id;
                             $_SESSION['username'] = $username;
                             $_SESSION['email'] = $email;
+                            $_SESSION['ismod'] = $ismod; // Set ismod session variable
+                            $_SESSION['isadmin'] = $isadmin; // Set isadmin session variable
 
                             // Redirect user to welcome page
                             header('location: user_page.php');
@@ -83,6 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 // Close connection
 $mysqli->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

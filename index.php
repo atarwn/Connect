@@ -108,8 +108,11 @@ $mysqli->close();
                         <span class="entry-time"><?php echo date('M j, Y H:i', strtotime($entry['created_at'])); ?></span>
                         <?php if ($_SESSION['username'] == $entry['author']): ?>
                             <!-- Only display edit and delete links if current user is the author of the post -->
-                            <a href="editpost.php?id=<?php echo $entry['id']; ?>">Edit</a> |
-                            <a href="removepost.php?id=<?php echo $entry['id']; ?>">Delete</a>
+                            [ <a href="editpost.php?id=<?php echo $entry['id']; ?>">Edit</a> |
+                            <a href="removepost.php?id=<?php echo $entry['id']; ?>">Delete</a> ]
+                        <?php endif; ?>
+                        <?php if ($_SESSION['username'] != $entry['author'] && $_SESSION['ismod'] == 1): ?>
+                            [ <a href="removepost.php?id=<?php echo $entry['id']; ?>">Delete</a> ]
                         <?php endif; ?>
                         <br>
                         <?php echo htmlspecialchars($entry['post']); ?>
