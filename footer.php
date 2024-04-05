@@ -4,4 +4,4 @@
     }
 </style>
 
-<p class="footer_vlomx27D39gakrvwi92">[Connect] - Betabuild 060424 (Colorful)</p>
+<p class="footer_vlomx27D39gakrvwi92">[Connect] - Deltabuild 060424 (Colorful)</p>
