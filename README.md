@@ -13,6 +13,7 @@ More or less stable build, functionality is not finalized, probably contains bug
 All intended functionality is implemented, no bugs detected so far
 
 - Deltabuild dDD.MM.YY-b (CODENAME)
+> p.s. build (-b) is optional in Deltabuild
 
 
 Stable version, all intended functionality implemented, no bugs
