@@ -2,20 +2,20 @@
 
 Early build uploaded to Github ahead of time for one reason or another
 
-- Alphabuild aDD.MM.YY-bb
+- Alphabuild aDDMMYY-bb
 
 
 More or less stable build, functionality is not finalized, probably contains bugs
 
-- Betabuild bDD.MM.YY-b (CODENAME)
+- Betabuild bDDMMYY-b (CODENAME)
 
 
 All intended functionality is implemented, no bugs detected so far
 
-- Deltabuild dDD.MM.YY-b (CODENAME)
+- Deltabuild dDDMMYY-b (CODENAME)
 > p.s. build (-b) is optional in Deltabuild
 
 
 Stable version, all intended functionality implemented, no bugs
 
-- Release DD.MM.YY (CODENAME)
+- Stable sDDMMYY (CODENAME)
