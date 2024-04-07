@@ -13,6 +13,29 @@
             height: 100px;
             border: 5px double red;
         }
+        .wrapper {
+        border: 4px ridge yellow; /* More info at MDN web docs*/
+        max-height: 765px;
+        overflow: auto; /* Adds a scrollbar to your page */
+        }
+        .online {
+        font-weight: bold;
+        }
+        .status-online {
+        color: lightgreen;
+        }
+        .status-offline {
+        color: firebrick; /* More colors at W3schools*/
+        }
+        .lastseen {
+        color: rgba(0, 0, 0, .5); /* More info at WebFX */
+        } 
+        .footer1 { /* Website version in the page footer */
+        color: green;
+        }
+        .footer2 { /* Banner in page footer */
+        display: none;
+        } 
     </style>
 </head>
 <body>
@@ -38,15 +61,65 @@
             border: 5px double red;<br>
         }
     </code>
+    <p>Want more customization? So use classes .wrapper and .online to customize your page:</p>
+    <code>
+    .wrapper {<br>
+        border: 4px ridge yellow; /* More info at <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border">MDN web docs</a>*/<br>
+        max-height: 765px;<br>
+        overflow: auto; /* Adds a scrollbar to your page */<br>
+    }<br>
+    .online {<br>
+        border: thick double #32a1ce;<br>
+    }<br>
+    .status-online {<br>
+        color: lightgreen; <br>
+    }<br>
+    .status-offline {<br>
+        color: firebrick; /* More colors at <a href="https://www.w3schools.com/cssref/css_colors.php">W3schools</a>*/<br>
+    }<br>
+    .lastseen {<br>
+        color: rgba(0, 0, 0, .5); /* More info at <a href="https://www.webfx.com/blog/web-design/rgba/">WebFX</a> */<br>
+    }
+    </code>
+    <p>Don't forget about .footer1 and .footer2, these two classes will allow you to change the footer of the page, you can hide it or colorize it:</p>
+    <code>
+    .footer1 { /* Website version in the page footer */<br>
+        color: green;<br>
+    }<br>
+    .footer2 { /* Banner in page footer */<br>
+        display: none;<br>
+    }
+    </code>
+    <h3>Result:</h3>
     <hr>
-        <h1 class="title"><img src="http://c.qwa.su/Butterfly.bmp" alt="Avatar" class="avatar" align="left">Butterfly's page</h1>
+    [Connect] <a href="index.php">Main</a> | <a href="login.php">Log in</a><hr>
+    <div class="wrapper">
+        <p class="online">
+            <span class="status-offline" style="color: red;">(Offline)</span>
+            <span class="lastseen" style="color: gainsboro;">Last seen at May 5 2023 22:09:37</span>
+        </p>
+        <h2 class="title">
+            <img src="http://c.qwa.su/imgs/Butterfly.gif" alt="Avatar" class="avatar" align="left" width="65" height="65">
+            Butterfly's page
+        </h2>
         <p>
             Ay, ay, ay<br>
             I'm your little butterfly<br>
             Green, black and blue<br>
             Make the colours in the sky<br>
         </p>
+    </div>
+    <div class="footer1">
+        <p style="text-align: right;">[Connect] - Deltabuild 060424-1 (Colorful)</p>
+    </div>
+    <div class="footer2">
+        <a href="http://c.qwa.su"><img src="imgs/gif.gif"></a><br>
+        <input type="text" readonly value='<a href="http://c.qwa.su"><img src="http://c.qwa.su/imgs/gif.gif"></a>'>
+    </div>
     <hr>
+    <h2>Recommendations</h2>
+<p>You can look into the source code of the page by pressing F12 or Right Mouse Button -> Explore, there you can modify styles directly and see the changes in real time, then you can copy and apply the styles to your page.</p>
+<p>You can also change the styles of html elements such as body, for example you can set background-color: black; and color: white; you can do the same with any other styles.</p>
 
 
 <h1>BBCode Examples</h1>
@@ -107,12 +180,12 @@
 <p><a href="http://www.google.com/">Google.com yo!</a></p>
 
 <h2>Image:</h2>
-<code>[img]http://c.qwa.su/Butterfly.bmp[/img]</code>
-<p><img src="http://c.qwa.su/Butterfly.bmp" alt="Image"></p>
+<code>[img]http://c.qwa.su/imgs/Butterfly.gif[/img]</code>
+<p><img src="http://c.qwa.su/imgs/Butterfly.gif" alt="Image"></p>
 
 <h2>Image as Link:</h2>
-<code>[url=http://forum.qwa.su][img]http://c.qwa.su/Butterfly.bmp[/img][/url]</code>
-<p><a href="http://forum.qwa.su"><img src="http://c.qwa.su/Butterfly.bmp" alt="Image"></a></p>
+<code>[url=http://forum.qwa.su][img]http://c.qwa.su/imgs/Butterfly.gif[/img][/url]</code>
+<p><a href="http://forum.qwa.su"><img src="http://c.qwa.su/imgs/Butterfly.gif" alt="Image"></a></p>
 
 <h2>Unordered List:</h2>
 <code>[list]

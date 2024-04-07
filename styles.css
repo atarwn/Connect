@@ -7,3 +7,9 @@
 a, a:visited {
 	color: #0000ff;
 }
+body {
+    width: 100%;
+    max-width: 567px;
+    margin-left: auto;
+    margin-right: auto;
+}

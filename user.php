@@ -1,12 +1,12 @@
 <?php
-require "bbcode.php";
+require "system/bbcode.php";
 $bbcode = new BBCode;
 
 // Initialize session
 session_start();
 
 // Include database connection
-include_once 'db_connect.php';
+include_once 'system/db_connect.php';
 
 // Retrieve user data from the database
 $sql = 'SELECT * FROM users WHERE id = ?';
@@ -68,15 +68,17 @@ $mysqli->close();
 <body>
     <?php include "bar.php"; ?>
     <div class="wrapper">
-        <h2>
+        <p class="online">
+            <?php if ($online): ?>
+                <span class="status-online" style="color: green;">(Online)</span>
+            <?php else: ?>
+                <span class="status-offline" style="color: red;">(Offline)</span>
+                <span class="lastseen" style="color: gainsboro;">Last seen at <?php echo date('M j, Y H:i:s', $last_visit_time); ?></span>
+            <?php endif; ?>
+        </p>
+        <h2 class="title">
             <img src="<?php echo htmlspecialchars($avatar); ?>" alt="Avatar" class="avatar" align="left" width="65" height="65">
             <?php echo htmlspecialchars($username); ?>'s page
-            <?php if ($online): ?>
-                <span style="color: green;">(Online)</span>
-            <?php else: ?>
-                <span style="color: red;">(Offline)</span>
-                <span style="color: gainsboro;">Last seen at <?php echo date('M j, Y H:i:s', $last_visit_time); ?></span>
-            <?php endif; ?>
         </h2>
         <p><?php echo $bbcode->toHTML($personal_info); ?></p>
     </div>

@@ -3,7 +3,7 @@
 session_start();
 
 // Include database connection
-include_once 'db_connect.php';
+include_once 'system/db_connect.php';
 
 // Query to count the number of registered users
 $sql_count_users = "SELECT COUNT(*) FROM users";
@@ -122,10 +122,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $param_personal_info = 'Hello world!';
             $param_email = $email;
             $param_custom_style = '
-.avatar{margin-right: 5px;}
-.title{font-style: italic; color: #'.bin2hex(random_bytes(3)).';}
-body{width: 100%; background-color: #'.bin2hex(random_bytes(3)).'; color: #'.bin2hex(random_bytes(3)).';}
-            ';
+.avatar{
+    margin-right: 5px;
+}
+.title{
+    font-style: italic; color: #'.bin2hex(random_bytes(3)).';
+}
+.wrapper {
+    overflow: auto;
+    border: '.rand(3, 5).'px solid #'.bin2hex(random_bytes(3)).';
+}
+body{
+    width: 100%;
+    max-width: 567px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #'.bin2hex(random_bytes(3)).'; 
+    color: #'.bin2hex(random_bytes(3)).';
+}';
 
             // Attempt to execute the prepared statement
             if ($stmt->execute()) {

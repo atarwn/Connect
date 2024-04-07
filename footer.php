@@ -1,7 +1,9 @@
-<style>
-    .footer_vlomx27D39gakrvwi92 {
-        text-align: right;
-    }
-</style>
-
-<p class="footer_vlomx27D39gakrvwi92">[Connect] - Deltabuild 060424 (Colorful)</p>
+<div class="footer">
+    <div class="footer1">
+        <p style="text-align: right;">[Connect] - Deltabuild 060424-1 (Colorful)</p>
+    </div>
+    <div class="footer2">
+        <a href="http://c.qwa.su"><img src="imgs/gif.gif"></a><br>
+        <input type="text" readonly value='<a href="http://c.qwa.su"><img src="http://c.qwa.su/imgs/gif.gif"></a>'>
+    </div>
+</div>
