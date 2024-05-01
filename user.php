@@ -31,6 +31,21 @@ if ($stmt = $mysqli->prepare($sql)) {
             $avatar = $row['avatar'];
             $custom_style = $row['custom_style'];
             $personal_info = $row['personal_info'];
+            $banner_url = ''; // Initialize banner URL variable
+            
+            // Check if banner URL exists
+            $sql_banner = 'SELECT banner_url FROM banners WHERE user_id = ?';
+            if ($stmt_banner = $mysqli->prepare($sql_banner)) {
+                $stmt_banner->bind_param('i', $param_id);
+                if ($stmt_banner->execute()) {
+                    $result_banner = $stmt_banner->get_result();
+                    if ($result_banner->num_rows == 1) {
+                        $row_banner = $result_banner->fetch_array(MYSQLI_ASSOC);
+                        $banner_url = $row_banner['banner_url'];
+                    }
+                }
+                $stmt_banner->close();
+            }
             
             // Check online status
             $last_visit_time = strtotime($row['lastvisittime']);
@@ -61,7 +76,7 @@ $mysqli->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($username); ?>'s page</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2">
     <style><?php echo htmlspecialchars($custom_style); ?></style>
 </head>
 
@@ -76,6 +91,12 @@ $mysqli->close();
                 <span class="lastseen" style="color: gainsboro;">Last seen at <?php echo date('M j, Y H:i:s', $last_visit_time); ?></span>
             <?php endif; ?>
         </p>
+        <!-- Display banner -->
+        <?php if (!empty($banner_url)): ?>
+            <div class="banner">
+            <img src="<?php echo htmlspecialchars($banner_url); ?>" alt="Banner" class="banner-img" width="100%">
+            </div>
+        <?php endif; ?>
         <h2 class="title">
             <img src="<?php echo htmlspecialchars($avatar); ?>" alt="Avatar" class="avatar" align="left" width="65" height="65">
             <?php echo htmlspecialchars($username); ?>'s page

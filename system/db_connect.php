@@ -1,6 +1,5 @@
 <?php
 date_default_timezone_set('Europe/Moscow');
-
 // Database credentials
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');

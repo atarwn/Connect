@@ -3,7 +3,15 @@
 session_start();
 
 // Include database connection
-include_once 'db_connect.php';
+include_once 'system/db_connect.php';
+
+// Query to count the number of registered users
+$sql_count_users = "SELECT COUNT(*) FROM users";
+if ($result = $mysqli->query($sql_count_users)) {
+    $row = $result->fetch_row();
+    $user_count = $row[0];
+    $result->free();
+}
 
 // Define variables and initialize with empty values
 $email = $password = '';
@@ -94,7 +102,7 @@ $mysqli->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2">
 </head>
 
 <body>

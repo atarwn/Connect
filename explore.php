@@ -1,6 +1,6 @@
 <?php
 // Include database connection
-include_once 'db_connect.php';
+include_once 'system/db_connect.php';
 session_start();
 // Function to get list of users
 function getUsers($mysqli) {
@@ -37,7 +37,7 @@ $mysqli->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>List of Users</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2">
     <style>
         table {
             width: 100%;
@@ -54,15 +54,15 @@ $mysqli->close();
             width: 25%;
         }
 
-        th {
-            background-color: #f2f2f2;
-        }
         img {
-            width: 65px;
-            height: 65px;
+            width: 100%;
+            height: auto;
         }
         .desc {
             width: 50%
+        }
+        .footer2 {
+            display: none;
         }
     </style>
 </head>

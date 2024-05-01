@@ -1,6 +1,6 @@
 # Connect
 
-Early build uploaded to Github ahead of time for one reason or another
+Early build posted on Github ahead of time for some reason
 
 - Alphabuild aDDMMYY-bb
 

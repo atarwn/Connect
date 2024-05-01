@@ -4,7 +4,7 @@ session_start();
 
 // Check if user is logged in
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header('location: login.php');
+    header('Location: ../login.php');
     exit;
 }
 
@@ -59,7 +59,7 @@ if (isset($_GET['id']) && !empty($entries)) {
             // Attempt to execute the prepared statement
             if ($stmt->execute()) {
                 // Post deleted successfully
-                header('location: index.php');
+                header('Location: ../index.php');
                 exit;
             } else {
                 // Error deleting post

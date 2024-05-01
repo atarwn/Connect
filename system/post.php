@@ -4,7 +4,7 @@ session_start();
 
 // Check if user is logged in
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header('location: login.php');
+    header('Location: ../login.php');
     exit;
 }
 
@@ -27,7 +27,7 @@ function postEntry($mysqli, $content) {
         // Attempt to execute the prepared statement
         if ($stmt->execute()) {
             // Entry posted successfully
-            header('Location: index.php');
+            header('Location: ../index.php');
             exit;
         } else {
             // Error posting entry

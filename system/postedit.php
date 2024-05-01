@@ -4,7 +4,7 @@ session_start();
 
 // Check if user is logged in
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header('location: login.php');
+    header('Location: login.php');
     exit;
 }
 
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param('si', $content, $post_id);
         if ($stmt->execute()) {
             // Post updated successfully
-            header('location: index.php');
+            header('location: ../index.php');
             exit;
         } else {
             // Error updating post
@@ -78,14 +78,14 @@ $mysqli->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Post</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2">
 </head>
 
 <body>
-    <?php include "bar.php"; ?><?php include "online.php"; ?>
+    <?php include "bar.php"; ?><?php include "system/online.php"; ?>
     <div class="wrapper">
         <h2>Edit Post</h2>
-        <form action="editpost.php?id=<?php echo $post_id; ?>" method="post">
+        <form action="postedit.php?id=<?php echo $post_id; ?>" method="post">
             <div class="form-group">
                 <textarea name="content" class="form-control" rows="4"><?php echo htmlspecialchars($post['post']); ?></textarea>
             </div>
