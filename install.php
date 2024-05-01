@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     $dbname = $_POST['dbname'];
 
-    // Write database connection parameters to db_connect.php
+    // Write database connection parameters to system/db_connect.php
     $db_config_content = "<?php\n";
     $db_config_content .= "date_default_timezone_set('Europe/Moscow');\n";
     $db_config_content .= "// Database credentials\n";
@@ -23,8 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $db_config_content .= "}\n";
     $db_config_content .= "?>";
 
-    // Write database connection parameters to db_connect.php
-    file_put_contents('db_connect.php', $db_config_content);
+    // Write database connection parameters to system/db_connect.php
+    file_put_contents('system/db_connect.php', $db_config_content);
 
     // Attempt to create necessary tables in the database
     $mysqli = new mysqli($servername, $username, $password, $dbname);
@@ -63,10 +63,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         )
     ";
 
+    // SQL to create banners table
+    $sql_banners = "
+        CREATE TABLE IF NOT EXISTS banners (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            user_id INT NOT NULL,
+            banner_url VARCHAR(255) NOT NULL,
+            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+        )
+    ";
+    
+    // SQL to create hosting table
+    $sql_hosting = "
+        CREATE TABLE IF NOT EXISTS hosting (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            username VARCHAR(255) NOT NULL,
+            folder_name VARCHAR(255) NOT NULL,
+            ftp_username VARCHAR(255) NOT NULL
+        )
+    ";
+
     $sql_timezone = "SET @@global.time_zone = '+03:00';";
 
     // Execute SQL queries
-    if ($mysqli->query($sql_users) === TRUE && $mysqli->query($sql_wall) === TRUE && $mysqli->query($sql_timezone) === TRUE) {
+    if ($mysqli->query($sql_users) === TRUE &&
+        $mysqli->query($sql_wall) === TRUE &&
+        $mysqli->query($sql_banners) === TRUE &&
+        $mysqli->query($sql_hosting) === TRUE &&
+        $mysqli->query($sql_timezone) === TRUE) {
         echo "Tables created successfully. Please make sure you remove 'install.php' after installation.";
     } else {
         echo "Error creating tables: " . $mysqli->error;

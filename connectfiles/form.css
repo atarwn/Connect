@@ -1,0 +1,39 @@
+form {
+    font-family: 'Roboto', sans-serif;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    color: #424242;
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: block;
+}
+
+input[type="file"],
+input[type="text"],
+input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+input[type="submit"] {
+    background-color: rgb(0, 182, 243);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: rgb(0, 144, 192);
+}

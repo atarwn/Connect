@@ -4,12 +4,12 @@ session_start();
 
 // Check if user is logged in
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header('location: login.php');
+    header('Location: login.php');
     exit;
 }
 
 // Include database connection
-include_once 'db_connect.php';
+include_once 'system/db_connect.php';
 
 // Function to retrieve entries from the database
 function getEntries($mysqli) {
@@ -32,43 +32,6 @@ function getEntries($mysqli) {
     return $entries;
 }
 
-// Function to post a new entry
-function postEntry($mysqli, $content) {
-    // Prepare SQL statement to insert entry
-    $sql = "INSERT INTO wall (author, author_url, avatar_url, post, created_at) VALUES (?, ?, ?, ?, NOW())";
-
-    // Check if the statement can be prepared
-    if ($stmt = $mysqli->prepare($sql)) {
-        // Bind parameters
-        $author = $_SESSION['username'];
-        $author_url = 'user.php?id='.$_SESSION['id']; // Assuming there is no author URL stored for now
-        $avatar_url = ''; // Assuming there is no avatar URL stored for now
-        $stmt->bind_param('ssss', $author, $author_url, $avatar_url, $content);
-
-        // Attempt to execute the prepared statement
-        if ($stmt->execute()) {
-            // Entry posted successfully
-            return true;
-        } else {
-            // Error posting entry
-            return false;
-        }
-        // Close statement
-        $stmt->close();
-    }
-}
-
-// Check if form is submitted to post a new entry
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $content = $_POST["content"];
-
-    // Validate content
-    if (!empty($content)) {
-        // Post entry
-        postEntry($mysqli, $content);
-    }
-}
-
 // Retrieve entries
 $entries = getEntries($mysqli);
 
@@ -83,14 +46,14 @@ $mysqli->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wall</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2">
 </head>
 
 <body>
 <?php include "bar.php";?>
     <div class="wrapper">
         <h2>Wall</h2>
-        <form action="post.php" method="post">
+        <form action="system/post.php" method="post">
             <div class="form-group">
                 <textarea name="content" class="form-control" rows="4" placeholder="Write something..."></textarea>
             </div>
@@ -102,32 +65,32 @@ $mysqli->close();
         <h3>Recent Entries</h3>
         <?php if (!empty($entries)): ?>
             <ul class="entry-list">
-                <?php foreach ($entries as $entry): ?>
-                    <li class="entry">
-                        <strong><a href="<?php echo htmlentities($entry['author_url']);?>"><?php echo htmlspecialchars($entry['author']); ?></a></strong>
-                        <span class="entry-time"><?php echo date('M j, Y H:i', strtotime($entry['created_at'])); ?></span>
-                        <?php if ($_SESSION['username'] == $entry['author']): ?>
-                            <!-- Only display edit and delete links if current user is the author of the post -->
-                            [ <a href="editpost.php?id=<?php echo $entry['id']; ?>">Edit</a> |
-                            <a href="removepost.php?id=<?php echo $entry['id']; ?>">Delete</a> ]
-                        <?php endif; ?>
-                        <?php if ($_SESSION['username'] != $entry['author'] && $_SESSION['ismod'] == 1): ?>
-                            [ <a href="removepost.php?id=<?php echo $entry['id']; ?>">Delete</a> ]
-                        <?php endif; ?>
-                        <br>
-                        <?php echo htmlspecialchars($entry['post']); ?>
-                        <?php if ($entry['edited']): ?>
-                            <span style="color: gray; font-size: small;">(edited)</span>
-                        <?php endif; ?>
-                    </li>
-                <?php endforeach; ?>
+            <?php foreach ($entries as $entry): ?>
+                <li class="entry">
+                    <strong><a href="<?php echo htmlentities($entry['author_url']);?>"><?php echo htmlspecialchars($entry['author']); ?></a></strong>
+                    <span class="entry-time"><?php echo date('M j, Y H:i', strtotime($entry['created_at'])); ?></span>
+                    <?php if ($_SESSION['username'] == $entry['author']): ?>
+                        <!-- Only display edit and delete links if current user is the author of the post -->
+                        [ <a href="system/postedit.php?id=<?php echo $entry['id']; ?>">Edit</a> |
+                        <a href="system/postremove.php?id=<?php echo $entry['id']; ?>">Delete</a> ]
+                    <?php endif; ?>
+                    <?php if ($_SESSION['username'] != $entry['author'] && $_SESSION['ismod'] == 1): ?>
+                        [ <a href="system/postremove.php?id=<?php echo $entry['id']; ?>">Delete</a> ]
+                    <?php endif; ?>
+                    <br>
+                    <?php echo nl2br(htmlspecialchars($entry['post'])); ?>
+                    <?php if ($entry['edited']): ?>
+                        <span style="color: gray; font-size: small;">(edited)</span>
+                    <?php endif; ?>
+                </li>
+            <?php endforeach; ?>
             </ul>
         <?php else: ?>
             <p>No entries yet.</p>
         <?php endif; ?>
     </div>
     <?php include "footer.php"; ?>
-    <?php include "online.php"; ?>
+    <?php include "system/online.php"; ?>
 </body>
 
 </html>
