@@ -41,7 +41,6 @@ $mysqli->close();
     <style>
         table {
             width: 100%;
-            max-width: 500px;
             border-collapse: collapse;
         }
 
