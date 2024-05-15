@@ -1,4 +1,5 @@
 <?php
+$force_delete = $_GET['force'];
 // Start session
 session_start();
 
@@ -48,26 +49,37 @@ if (isset($_GET['id']) && !empty($entries)) {
 
     // Check if user is the author of the post or a moderator
     if ($_SESSION['username'] == $author || $_SESSION['ismod'] == 1) {
-        // Prepare SQL statement to delete post
-        $sql = "DELETE FROM wall WHERE id = ? AND author = ?";
+        switch ($force_delete) {
+            case (1):
+                // Prepare SQL statement to delete post
+                $sql = "DELETE FROM wall WHERE id = ? AND author = ?";
 
-        // Check if the statement can be prepared
-        if ($stmt = $mysqli->prepare($sql)) {
-            // Bind parameters
-            $stmt->bind_param('is', $post_id, $author);
+                // Check if the statement can be prepared
+                if ($stmt = $mysqli->prepare($sql)) {
+                    // Bind parameters
+                    $stmt->bind_param('is', $post_id, $author);
 
-            // Attempt to execute the prepared statement
-            if ($stmt->execute()) {
-                // Post deleted successfully
-                header('Location: ../index.php');
-                exit;
-            } else {
-                // Error deleting post
-                echo "Error deleting post.";
-            }
-            // Close statement
-            $stmt->close();
+                    // Attempt to execute the prepared statement
+                    if ($stmt->execute()) {
+                        // Post deleted successfully
+                        header('Location: ../index.php');
+                        exit;
+                    } else {
+                        // Error deleting post
+                        echo "Error deleting post.";
+                    }
+                    // Close statement
+                    $stmt->close();
+                    break;
+                }
+            default:
+                echo '
+                <h1>Do you really want to delete this post?</h1>
+                <p>'.$author.': '.$entry['post'].'</p>
+                <p>[ <a href="postremove.php?id='.$post_id.'&force=1">Yes</a> | <a href="../index.php">No</a> ]</p>
+                ';
         }
+        
     } else {
         // User does not have permission to delete the post
         echo "You do not have permission to delete this post.";

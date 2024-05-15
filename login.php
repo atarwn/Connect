@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             $_SESSION['ismod'] = $ismod; // Set ismod session variable
                             $_SESSION['isadmin'] = $isadmin; // Set isadmin session variable
 
-                            // Redirect user to welcome page
+                            // Redirect user to his/her page
                             header('location: user_page.php');
                             exit;
                         } else {
@@ -102,7 +102,7 @@ $mysqli->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="styles.css?v=2">
+    <link rel="stylesheet" href="styles.css?v=4">
 </head>
 
 <body>

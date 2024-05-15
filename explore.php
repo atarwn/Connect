@@ -39,26 +39,27 @@ $mysqli->close();
     <title>List of Users</title>
     <link rel="stylesheet" href="styles.css?v=2">
     <style>
+        /* Some styles for table */
         table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: collapse
         }
 
         table, th, td {
             border: 1px solid black;
             padding: 8px;
-            text-align: left;
-        }
-        th, td {
-            width: 25%;
+            text-align: left
         }
 
         img {
             width: 100%;
             height: auto;
         }
+        .user {
+            width: 20%
+        }
         .desc {
-            width: 50%
+            width: 80%
         }
         .footer2 {
             display: none;
@@ -72,16 +73,19 @@ $mysqli->close();
     <table>
         <thead>
             <tr>
-                <th>Avatar</th>
-                <th>User</th>
+                <th class="user">User</th>
+                <!-- <th>User</th> -->
                 <th class="desc">Description</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($users as $user): ?>
                 <tr>
-                    <td><img src="<?php echo $user['avatar']; ?>"></td>
-                    <td><a href="user.php?id=<?php echo $user['id'] ?>"><?php echo $user['username']; ?></a></td>
+                    <td class="user">
+                        <a href="user.php?id=<?php echo $user['id'] ?>"><?php echo $user['username']; ?></a>
+                        <img src="<?php echo $user['avatar']; ?>">
+                    </td>
+                    <!-- <td class=""></td> -->
                     <td class="desc"><?php echo $user['personal_info'] ?></td>
                 </tr>
             <?php endforeach; ?>
