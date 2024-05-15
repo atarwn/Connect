@@ -1,5 +1,9 @@
 # Connect
 
+Primitive social network
+
+## Tag designations
+
 Early build posted on Github ahead of time for some reason
 
 - Alphabuild aDDMMYY-bb
