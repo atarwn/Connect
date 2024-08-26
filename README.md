@@ -1,25 +1,6 @@
-# Connect
+# Connect is closed.
 
-Primitive social network
+The huge technical debt and poor code quality made me feel disgusted and I decided to close this project. 
 
-## Tag designations
-
-Early build posted on Github ahead of time for some reason
-
-- Alphabuild aDDMMYY-bb
-
-
-More or less stable build, functionality is not finalized, probably contains bugs
-
-- Betabuild bDDMMYY-b (CODENAME)
-
-
-All intended functionality is implemented, no bugs detected so far
-
-- Deltabuild dDDMMYY-b (CODENAME)
-> p.s. build (-b) is optional in Deltabuild
-
-
-Stable version, all intended functionality implemented, no bugs
-
-- Stable sDDMMYY (CODENAME)
+> [!WARNING]
+> Please do not use my code. Learn PHP properly and write it yourself!
